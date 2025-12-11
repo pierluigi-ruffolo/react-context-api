@@ -27,6 +27,9 @@ export default function Nav() {
           {link.title}
         </NavLink>
       ))}
+      <button className="bg-warning border rounded-3">
+        Attiva modalita Budget
+      </button>
     </>
   );
 }
