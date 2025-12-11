@@ -1,8 +1,21 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, useEffectEvent } from "react";
 import { Link } from "react-router-dom";
+import { BudgetContext } from "../context/BudgetContext";
 export default function Prodotti() {
   const [prodotti, setProdotti] = useState([]);
+  const [prodottiAPi, setProdottiAPi] = useState([]);
+
+  const { budgetMode } = useContext(BudgetContext);
+
+  useEffect(() => {
+    if (prodotti === "") {
+      return;
+    } else {
+      setProdottiAPi(prodotti);
+      console.log("ciao");
+    }
+  }, [budgetMode, prodotti]);
 
   useEffect(() => {
     axios.get(" https://fakestoreapi.com/products").then((response) => {
@@ -13,7 +26,7 @@ export default function Prodotti() {
   return (
     <div className="container">
       <div className="row">
-        {prodotti.map((prodotto) => {
+        {prodottiAPi.map((prodotto) => {
           return (
             <div className="col-6 mb-5 p-3" key={prodotto.id}>
               <div className="card h-100 bg-secondary-subtle">

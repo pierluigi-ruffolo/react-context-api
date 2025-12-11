@@ -17,7 +17,7 @@ export default function Nav() {
     },
   ];
   const { budgetMode, toggleBudgetMode } = useContext(BudgetContext);
-  console.log(budgetMode);
+
   return (
     <>
       {links.map((link, index) => (
