@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const BudgetContext = createContext();
 
 function BudgetProvider({ children }) {
-  const [budgetMode, setbudgetMode] = useState(false);
+  const [budgetMode, setbudgetMode] = useState(true);
 
   function toggleBudgetMode() {
     setbudgetMode(!budgetMode);

@@ -18,7 +18,6 @@ export default function Nav() {
   ];
   const { budgetMode, toggleBudgetMode } = useContext(BudgetContext);
   console.log(budgetMode);
-
   return (
     <>
       {links.map((link, index) => (
@@ -30,8 +29,13 @@ export default function Nav() {
           {link.title}
         </NavLink>
       ))}
-      <button className="bg-warning border rounded-3">
-        Attiva modalita Budget
+      <button
+        onClick={toggleBudgetMode}
+        className="bg-warning border rounded-3"
+      >
+        {budgetMode === true
+          ? "Attiva Modalità Budget"
+          : "Disattiva Modalità Budget"}
       </button>
     </>
   );
