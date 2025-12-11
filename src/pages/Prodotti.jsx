@@ -12,8 +12,16 @@ export default function Prodotti() {
     if (prodotti === "") {
       return;
     } else {
-      setProdottiAPi(prodotti);
-      console.log("ciao");
+      if (budgetMode === true) {
+        setProdottiAPi(prodotti);
+      } else {
+        console.log(prodotti);
+        const filter = prodotti.filter((p) => {
+          return p.price <= 30;
+        });
+        console.log(filter);
+        setProdottiAPi(filter);
+      }
     }
   }, [budgetMode, prodotti]);
 
