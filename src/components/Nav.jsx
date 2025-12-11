@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-
+import { BudgetContext } from "../context/BudgetContext";
 export default function Nav() {
   const links = [
     {
@@ -15,6 +16,8 @@ export default function Nav() {
       path: "/ChiSiamo",
     },
   ];
+  const { budgetMode, toggleBudgetMode } = useContext(BudgetContext);
+  console.log(budgetMode);
 
   return (
     <>
