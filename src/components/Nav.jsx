@@ -1,7 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BudgetContext } from "../context/BudgetContext";
 export default function Nav() {
+  const { budgetMode, toggleBudgetMode, inputNum, SetInputNum } =
+    useContext(BudgetContext);
+
+  function onCLickInputNum(e) {
+    SetInputNum(e.target.value);
+  }
+
   const links = [
     {
       title: "Home",
@@ -16,7 +23,6 @@ export default function Nav() {
       path: "/ChiSiamo",
     },
   ];
-  const { budgetMode, toggleBudgetMode } = useContext(BudgetContext);
 
   return (
     <>
@@ -37,6 +43,8 @@ export default function Nav() {
           ? "Attiva Modalità Budget"
           : "Disattiva Modalità Budget"}
       </button>
+
+      <input type="number" id="number" onChange={onCLickInputNum} />
     </>
   );
 }
