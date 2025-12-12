@@ -7,16 +7,24 @@ export default function Prodotti() {
   const [prodottiAPi, setProdottiAPi] = useState([]);
   const { budgetMode, inputNum } = useContext(BudgetContext);
 
+  const conInputNum = parseInt(inputNum);
   useEffect(() => {
-    if (prodotti === "") {
+    if (prodotti.length === 0) {
       return;
     } else {
       if (inputNum === null || inputNum === "") {
         setProdottiAPi(prodotti);
       } else {
-        const filter = prodotti.filter((p) => p.price <= parseInt(inputNum));
-
-        setProdottiAPi(filter);
+        let prezzoPiuBasso = prodotti[0].price;
+        prodotti.forEach((prodotto) => {
+          if (prodotto.price < prezzoPiuBasso) {
+            prezzoPiuBasso = prodotto.price;
+          }
+        });
+        if (conInputNum > prezzoPiuBasso) {
+          const filter = prodotti.filter((p) => p.price <= conInputNum);
+          setProdottiAPi(filter);
+        }
       }
     }
   }, [prodotti, inputNum]);
