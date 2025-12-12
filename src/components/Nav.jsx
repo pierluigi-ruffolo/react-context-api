@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BudgetContext } from "../context/BudgetContext";
 export default function Nav() {
-  const { budgetMode, toggleBudgetMode, inputNum, SetInputNum } =
+  const { budgetMode, toggleBudgetMode, SetInputNum } =
     useContext(BudgetContext);
 
   function onCLickInputNum(e) {

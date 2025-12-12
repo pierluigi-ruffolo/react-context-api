@@ -5,25 +5,21 @@ import { BudgetContext } from "../context/BudgetContext";
 export default function Prodotti() {
   const [prodotti, setProdotti] = useState([]);
   const [prodottiAPi, setProdottiAPi] = useState([]);
-
-  const { budgetMode } = useContext(BudgetContext);
+  const { budgetMode, inputNum } = useContext(BudgetContext);
 
   useEffect(() => {
     if (prodotti === "") {
       return;
     } else {
-      if (budgetMode === true) {
+      if (inputNum === null) {
         setProdottiAPi(prodotti);
       } else {
-        console.log(prodotti);
-        const filter = prodotti.filter((p) => {
-          return p.price <= 30;
-        });
+        const filter = prodotti.filter((p) => p.price <= parseInt(inputNum));
         console.log(filter);
         setProdottiAPi(filter);
       }
     }
-  }, [budgetMode, prodotti]);
+  }, [prodotti, inputNum]);
 
   useEffect(() => {
     axios.get(" https://fakestoreapi.com/products").then((response) => {
@@ -44,6 +40,7 @@ export default function Prodotti() {
                 <div className="card-body d-flex flex-column justify-content-center">
                   <h5 className="card-title fs-2">{prodotto.title}</h5>
                   <p className="card-text fs-4">{prodotto.category}</p>
+                  <p className="card-text fs-4">Prezzo: {prodotto.price}$</p>
                   <Link
                     className="fs-3 text-decoration-none"
                     to={`/Prodotti/${prodotto.id}`}
