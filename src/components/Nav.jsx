@@ -44,7 +44,12 @@ export default function Nav() {
           : "Disattiva Modalità Budget"}
       </button>
 
-      <input type="number" id="number" onChange={onCLickInputNum} />
+      <input
+        type="number"
+        id="number"
+        onChange={onCLickInputNum}
+        placeholder="filtra per prezzo..."
+      />
     </>
   );
 }
