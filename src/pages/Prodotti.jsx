@@ -11,11 +11,11 @@ export default function Prodotti() {
     if (prodotti === "") {
       return;
     } else {
-      if (inputNum === null) {
+      if (inputNum === null || inputNum === "") {
         setProdottiAPi(prodotti);
       } else {
         const filter = prodotti.filter((p) => p.price <= parseInt(inputNum));
-        console.log(filter);
+
         setProdottiAPi(filter);
       }
     }
